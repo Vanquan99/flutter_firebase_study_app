@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_study_app/firebase_ref/references.dart';
 import 'package:flutter_study_app/screens/home/home_screen.dart';
@@ -50,25 +49,25 @@ class AuthController extends GetxController {
     }
   }
 
-  User? getUser(){
+  User? getUser() {
     _user.value = _auth.currentUser;
     return _user.value;
   }
 
   saveUser(GoogleSignInAccount account) {
     userRF.doc(account.email).set({
-      'email':account.email,
-      'name':account.displayName,
-      'profilepic':account.photoUrl
+      'email': account.email,
+      'name': account.displayName,
+      'profilepic': account.photoUrl
     });
   }
 
-  Future <void> signOut() async{
+  Future<void> signOut() async {
     print('sign out');
-    try{
+    try {
       await _auth.signOut();
       navigateToHomePage();
-    } on FirebaseAuthException catch(e){
+    } on FirebaseAuthException catch (e) {
       print(e);
     }
   }
@@ -77,25 +76,26 @@ class AuthController extends GetxController {
     Get.offAllNamed('/introduction');
   }
 
-  navigateToHomePage(){
-   Get.offAllNamed(HomeScreen.routeName);
+  navigateToHomePage() {
+    Get.offAllNamed(HomeScreen.routeName);
   }
 
-  void showLoginAlertDialog(){
-    Get.dialog(DiaLogs.questionStartDialog(onTap: (){
-      Get.back();
-      navigateToLoginPage();
-    }
-    ),
-      barrierDismissible: false
-    );
+  void showLoginAlertDialog() {
+    Get.dialog(
+        DiaLogs.questionStartDialog(onTapConfirm: () {
+          // Get.back();
+          navigateToLoginPage();
+        }, onTapCancel: () {
+          Get.back();
+        }),
+        barrierDismissible: false);
   }
 
-  void navigateToLoginPage(){
+  void navigateToLoginPage() {
     Get.toNamed(LoginScreen.routeName);
   }
 
-  bool isLoggedIn(){
-    return _auth.currentUser !=null;
+  bool isLoggedIn() {
+    return _auth.currentUser != null;
   }
 }
