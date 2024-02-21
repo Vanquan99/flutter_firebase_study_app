@@ -10,7 +10,6 @@ import 'package:flutter_study_app/widgets/content_area.dart';
 import 'package:flutter_zoom_drawer/config.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
-
 import 'menu_screen.dart';
 
 class HomeScreen extends GetView<MyZoomDrawerController> {
@@ -28,13 +27,14 @@ class HomeScreen extends GetView<MyZoomDrawerController> {
         return ZoomDrawer(
           borderRadius: 50,
           controller: _.zoomDrawerController,
-          showShadow: true,
+          showShadow: false,
           // moveMenuScreen: false,
           angle: 0,
           style: DrawerStyle.defaultStyle,
+          // menuBackgroundColor: ,
           // menuBackgroundColor: Colors.white.withOpacity(0.5),
           slideWidth: MediaQuery.of(context).size.width*0.7,
-          menuScreen: MyMenuScreen(),
+          menuScreen: const MyMenuScreen(),
           mainScreen: Container(
             decoration: BoxDecoration(gradient: mainGradient()),
             // color: Colors.blueAccent,

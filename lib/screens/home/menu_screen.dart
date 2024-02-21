@@ -10,9 +10,6 @@ class MyMenuScreen extends GetView<MyZoomDrawerController> {
 
   @override
   Widget build(BuildContext context) {
-
-    return Container(color: Colors.red,);
-    /*
     return Container(
       // padding: UIParameters.mobileScreenPadding,
       width: double.maxFinite,
@@ -84,8 +81,6 @@ class MyMenuScreen extends GetView<MyZoomDrawerController> {
             ),
           )),
     );
-
-    */
   }
 }
 
